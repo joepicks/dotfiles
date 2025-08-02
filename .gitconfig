@@ -17,3 +17,5 @@
     st = status
     ci = commit
     co = checkout
+[credential]
+	helper = store
