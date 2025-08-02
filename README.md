@@ -1,37 +1,37 @@
 # Minimalist Arch Linux Setup
 
-## Features
-**bashrc** 
-config includes command "workon"
+####bashrc
+<p>config includes command "workon"<br>
+*bash:*<br>
+    workon [~/sample_directory]<br>
+This will open the terminal into the project directory and attempt to run a python venv in the directory if .venv exists</p>
 
-    *bash:*
-        *workon [~/sample_directory]*
-
-    This will open the terminal into the project directory and attempt to run a python venv in the directory if .venv exists
-
-**tmux** 
+####tmux
 config changes default binding to C-Space, some other basic features
 
-**hyprland** 
+####hyprland
 config for minimal desktop environment
-    *terminal: alacritty
-    file manager: thunar
-    menu: rofi
-    browser: firefox*
 
-    Startup apps
-    *waybar
-    lxqt-policykit*
+Default apps:
+- terminal: alacritty
+- file manager: thunar
+- menu: rofi
+- browser: firefox
 
-**neovim** 
-config for minimalist IDE
+Startup apps:
+- waybar
+- lxqt-policykit
 
-Uses :Lazy and :Mason for plugin and LSP support, respectively
+####neovim
+<p>config for minimalist IDE<br>
 
-space bar leader
-line numbers
-comment toggle
-bufferline for tabbed files open
-filetree
-:LspFormat command
+Uses :Lazy and :Mason for plugin and LSP support, respectively<br>
+
+Other features:
+- space bar leader
+- line numbers
+- comment toggle
+- bufferline for tabbed files open
+- filetree
+- :LspFormat command
 
