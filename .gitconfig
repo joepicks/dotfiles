@@ -1,0 +1,19 @@
+[user]
+	name = Joe Kaiser
+	email = joeakaiser@gmail.com
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[color]
+    ui = auto
+
+[core]
+    editor = nvim
+
+[alias]
+    st = status
+    ci = commit
+    co = checkout
