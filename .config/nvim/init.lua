@@ -10,7 +10,7 @@ vim.opt.smartindent = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
-vim.opt.wrap = true 
+vim.opt.wrap = true
 
 -- THEME
 -- require("colors.my_colorscheme")
@@ -93,6 +93,7 @@ require("lazy").setup({
           { mode = "n", keys = "<leader>n", desc = "Next buffer" },
           { mode = "n", keys = "<leader>p", desc = "Previous buffer" },
           { mode = "n", keys = "<leader>x", desc = "Close buffer" },
+          { mode = "n", keys = "<leader>g", desc = "Open g menu" },
         },
         window = {
           delay = 100, -- ms
@@ -131,36 +132,97 @@ require("lazy").setup({
     end
   },
 
-  -- Mason LSP
-  {
+
+-- Install Mason and LSP config
+{
+  "williamboman/mason.nvim",
+  build = ":MasonUpdate",
+  config = true,
+},
+
+{
+  "neovim/nvim-lspconfig",
+},
+
+{
+  "williamboman/mason-lspconfig.nvim",
+  dependencies = {
     "williamboman/mason.nvim",
-    build = ":MasonUpdate",
-    config = function()
-      require("mason").setup()
-    end
+    "neovim/nvim-lspconfig",
   },
-  
-  -- Mason LSP-Config
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "pyright",                -- Python
-          "clangd",                 -- C/C++
-          "rust_analyzer",          -- Rust
-          "lua_ls",                 -- Lua
-          "gopls",                  -- Go
-          "bashls",                 -- Bash
-          "html", "cssls", "jsonls", "yamlls", "taplo",
-          },
-        automatic_installation = true,
+  config = function()
+    require("mason-lspconfig").setup({
+      ensure_installed = {
+        "pyright",
+        "lua_ls",
+        "clangd",
+        "bashls",
+        "html",
+        "cssls",
+        "jsonls",
+      },
+    })
+
+    local lspconfig = require("lspconfig")
+
+    local servers = {
+      "pyright",
+      "lua_ls",
+      "clangd",
+      "bashls",
+      "html",
+      "cssls",
+      "jsonls",
+    }
+
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+    lspconfig["pyright"].setup({
+      capabilities = capabilities,
+    })
+
+    for _, server in ipairs(servers) do
+      lspconfig[server].setup({
+        capabilities = capabilities,
       })
     end
-  },
+  end,
+},
 
-  -- Mini modules
+-- Completion engine and sources
+{
+  "hrsh7th/nvim-cmp",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
+  },
+  config = function()
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
+
+    cmp.setup({
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
+      },
+      mapping = cmp.mapping.preset.insert({
+        ["<Tab>"] = cmp.mapping.select_next_item(),
+        ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-Space>"] = cmp.mapping.complete(),
+      }),
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+      },
+    })
+  end,
+},
+
+
+-- Mini modules
   {
     "echasnovski/mini.nvim",
     version = false,
@@ -197,3 +259,5 @@ vim.api.nvim_create_user_command("LspFormat", function()
   vim.lsp.buf.format()
 end, {})
 
+-- Enable catppuccin-mocha
+vim.cmd.colorscheme("catppuccin-mocha")

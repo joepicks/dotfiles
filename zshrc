@@ -25,7 +25,7 @@ workon() {
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias nvim='vim'
+alias vim='nvim'
 
 # Enable completion
 autoload -Uz compinit && compinit
