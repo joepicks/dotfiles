@@ -10,6 +10,11 @@ vim.opt.smartindent = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
+vim.opt.wrap = true 
+
+-- THEME
+-- require("colors.my_colorscheme")
+-- vim.o.background = "dark" -- or "light"
 
 -- KEYMAPS
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to clipboard" })
@@ -21,7 +26,10 @@ vim.keymap.set("v", "<leader>/", "<ESC><cmd>lua require('Comment.api').toggle.li
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
 vim.keymap.set("n", "<leader>n", ":BufferLineCycleNext<CR>", { silent = true, desc = "Next buffer" })
 vim.keymap.set("n", "<leader>p", ":BufferLineCyclePrev<CR>", { silent = true, desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>q", ":bd<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>x", ":bd<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>fb", function()
+  vim.cmd("!~/.local/share/nvim/mason/bin/black %")
+end, { desc = "Format with Black" })
 
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -84,7 +92,7 @@ require("lazy").setup({
           { mode = "n", keys = "<leader>e", desc = "Toggle file tree" },
           { mode = "n", keys = "<leader>n", desc = "Next buffer" },
           { mode = "n", keys = "<leader>p", desc = "Previous buffer" },
-          { mode = "n", keys = "<leader>q", desc = "Close buffer" },
+          { mode = "n", keys = "<leader>x", desc = "Close buffer" },
         },
         window = {
           delay = 100, -- ms
@@ -131,6 +139,8 @@ require("lazy").setup({
       require("mason").setup()
     end
   },
+  
+  -- Mason LSP-Config
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
@@ -166,22 +176,24 @@ require("lazy").setup({
     end
   },
 
+  -- catppuccin
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 })
 
 -- LSP Built-in formatting
-local on_attach = function(client, bufnr)
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format()
-      end,
-    })
-  end
-end
+-- local on_attach = function(client, bufnr)
+--   if client.server_capabilities.documentFormattingProvider then
+--     vim.api.nvim_create_autocmd("BufWritePre", {
+--       buffer = bufnr,
+--       callback = function()
+--         vim.lsp.buf.format()
+--       end,
+--     })
+--   end
+-- end
+
 -- :LspFormat command
 vim.api.nvim_create_user_command("LspFormat", function()
   vim.lsp.buf.format()
 end, {})
-
 
