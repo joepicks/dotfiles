@@ -1,7 +1,8 @@
 # ~/.zshrc
 
 # Export variables
-export EDITOR=vim
+export EDITOR=nvim
+export SUDO_EDITOR=nvim
 
 # workon function (enter project dir and activate .venv)
 workon() {
