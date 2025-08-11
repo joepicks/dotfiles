@@ -1,8 +1,10 @@
 # Minimalist Arch Linux Setup
 
 ## Install:
+```bash
 git clone https://github.com/joepicks/dotfiles.git ~/dotfiles
 ./install.sh
+```
 
 ## bashrc
 
