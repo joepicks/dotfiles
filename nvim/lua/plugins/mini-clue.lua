@@ -4,6 +4,10 @@ return {
   lazy = false,
   config = function()
     local miniclue = require("mini.clue")
+    
+    -- -- DAP Keymaps for F-keys + <leader>d-prefixed so mini.clue can hint
+    -- local dap = require("dap")
+    -- local ok_dapui, dapui = pcall(require, "dapui")
 
     -- add plugin leader clues here
     local plugin_leader_clues = {
@@ -38,12 +42,12 @@ return {
       { mode = "n", keys = "<leader>le", desc = "LSP: Line diagnostics" },
 
       -- DAP
-      { mode = "n", keys = "<leader>db", desc = "Toggle breakpoint" },
+      { mode = "n", keys = "<leader>dc", desc = "Continue (F5)" },
+      { mode = "n", keys = "<leader>db", desc = "Toggle breakpoint (F9)" },
+      { mode = "n", keys = "<leader>do", desc = "Step over (F10)" },
+      { mode = "n", keys = "<leader>di", desc = "Step into (F11)" },
+      { mode = "n", keys = "<leader>du", desc = "Step out (F12)" },
       { mode = "n", keys = "<leader>dB", desc = "Clear breakpoints" },
-      { mode = "n", keys = "<leader>dc", desc = "Continue" },
-      { mode = "n", keys = "<leader>dn", desc = "Step over" },
-      { mode = "n", keys = "<leader>di", desc = "Step into" },
-      { mode = "n", keys = "<leader>do", desc = "Step out" },
       { mode = "n", keys = "<leader>dr", desc = "Restart" },
       { mode = "n", keys = "<leader>dq", desc = "Terminate" },
       { mode = "n", keys = "<leader>dU", desc = "Toggle DAP UI" },
