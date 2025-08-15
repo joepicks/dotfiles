@@ -3,18 +3,30 @@ return {
   --   "catppuccin/nvim",
   --   name = "catppuccin",
   --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme("catppuccin")
+  --   end,
   -- },
-
+  
   {
-    "gbprod/nord.nvim",
-    name = "nord",
-    lazy = false,
+    "rebelot/kanagawa.nvim",
+    name = "kanagawa",
     priority = 1000,
-
     config = function()
-      vim.cmd.colorscheme("nord")
+      vim.cmd.colorscheme("kanagawa")
     end,
   },
+
+  -- {
+  --   "gbprod/nord.nvim",
+  --   name = "nord",
+  --   lazy = false,
+  --   priority = 1000,
+  --
+  --   config = function()
+  --     vim.cmd.colorscheme("nord")
+  --   end,
+  -- },
   
   -- {
   --   "bluz71/vim-moonfly-colors",
