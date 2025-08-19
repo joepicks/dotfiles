@@ -6,4 +6,4 @@ for i in {1..10}; do
 	hyprctl dispatch moveworkspacetomonitor "$i" "$MON"
 done
 
-hyprctl dispatch workspace 1
+# hyprctl dispatch workspace 1

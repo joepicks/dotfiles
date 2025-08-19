@@ -7,26 +7,26 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-	"hyprland/workspaces"
+    	"hyprland/workspaces"
         // "custom/media"
     ],
     "modules-center": [
     ],
     "modules-right": [
-        "pulseaudio",
-        "network",
+      "pulseaudio",
+      "network",
         // "power-profiles-daemon",
-        "cpu",
-        "memory",
-        "temperature",
-        "backlight",
-        // "keyboard-state",
-        // "sway/language",
-        "battery",
-        // "battery#bat0",
-        "clock"
-        // "tray",
-        // "custom/power"
+      "cpu",
+      "memory",
+      "temperature",
+      "backlight",
+      // "keyboard-state",
+      // "sway/language",
+      "battery",
+      // "battery#bat0",
+      "clock"
+      // "tray",
+      // "custom/power"
     ],
     // Modules configuration
     // "sway/workspaces": {
@@ -115,7 +115,7 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-	      "format": "{:%H:%M %m/%d/%y}",
+	      "format": "{:%Y-%m-%d %H:%M}",
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
