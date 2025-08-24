@@ -79,6 +79,7 @@ return {
                 "--background-index",
                 "--clang-tidy",
                 "--header-insertion=never",
+                "--", "-x", "c" -- Force C instead of C++ for .c files
               },
             })
           end,
