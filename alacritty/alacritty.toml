@@ -33,7 +33,7 @@ normal = { family = "Fira Code", style = "Regular" }
 bold   = { family = "Fira Code", style = "Bold" }
 italic = { family = "Fira Code", style = "Italic" }
 # normal.family = "Fira Code"
-size = 16
+size = 14
 builtin_box_drawing = true
 offset.x = 0
 offset.y = 0

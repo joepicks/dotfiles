@@ -18,11 +18,36 @@ return {
     },
     config = function()
       local dap = require("dap")
+     
+      -- python config
       local debugpy_python = "/home/joe/.venv/debugpy/bin/python"
       dap.adapters.python = { type = "executable", command = debugpy_python, args = { "-m", "debugpy.adapter" } }
       dap.configurations.python = {
         { type = "python", request = "launch", name = "Launch file", program = "${file}" },
       }
+
+      -- C/C++ (GDB)
+      -- dap.adapters.gdb = {
+      --   type = "executable",
+      --   command = "gdb",  -- make sure gdb is installed
+      --   name = "gdb",
+      -- }
+      -- 
+      -- dap.configurations.c = {
+      --   {
+      --     name = "Launch Executable",
+      --     type = "gdb",       -- must match adapter name
+      --     request = "launch",
+      --     program = function()
+      --       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+      --     end,
+      --     cwd = "${workspaceFolder}",
+      --     stopOnEntry = false,
+      --     args = {},
+      --   },
+      -- }
+      -- 
+      -- dap.configurations.cpp = dap.configurations.c  -- reuse for C++
     end,
   },
   {
